@@ -1,0 +1,35 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: docsage
+      POSTGRES_PASSWORD: docsage
+      POSTGRES_DB: docsage
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U docsage -d docsage"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DOCSAGE_STORE: pgvector
+      DATABASE_URL: postgresql://docsage:docsage@db:5432/docsage
+      # Offline defaults. For a real model set DOCSAGE_EMBEDDER=openai,
+      # DOCSAGE_LLM=openai, DOCSAGE_EMBEDDING_DIM=1536 and OPENAI_API_KEY in .env.
+      DOCSAGE_EMBEDDER: ${DOCSAGE_EMBEDDER:-hashing}
+      DOCSAGE_LLM: ${DOCSAGE_LLM:-extractive}
+      DOCSAGE_EMBEDDING_DIM: ${DOCSAGE_EMBEDDING_DIM:-512}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
