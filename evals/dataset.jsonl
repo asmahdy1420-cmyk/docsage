@@ -1,0 +1,18 @@
+{"question": "How is a new version rolled out to production?", "expected_sources": ["deployments.md"]}
+{"question": "How do I roll back a bad release?", "expected_sources": ["deployments.md"]}
+{"question": "Can we deploy on a Friday afternoon?", "expected_sources": ["deployments.md"]}
+{"question": "How quickly must a page be acknowledged?", "expected_sources": ["oncall.md"]}
+{"question": "What counts as a SEV1 incident?", "expected_sources": ["oncall.md"]}
+{"question": "When is a postmortem required?", "expected_sources": ["oncall.md"]}
+{"question": "When does the on-call rotation change?", "expected_sources": ["oncall.md"]}
+{"question": "How many days does a customer have to request a refund?", "expected_sources": ["refunds.md"]}
+{"question": "Who needs to approve a refund above 200 euros?", "expected_sources": ["refunds.md"]}
+{"question": "What happens when a customer opens a chargeback?", "expected_sources": ["refunds.md"]}
+{"question": "How long are access logs kept?", "expected_sources": ["data-retention.md"]}
+{"question": "How long do we keep database backups?", "expected_sources": ["data-retention.md"]}
+{"question": "What happens to personal data when an account is deleted?", "expected_sources": ["data-retention.md"]}
+{"question": "What is the rate limit on the free plan?", "expected_sources": ["api-rate-limits.md"]}
+{"question": "Which status code is returned when the rate limit is exceeded?", "expected_sources": ["api-rate-limits.md"]}
+{"question": "How should clients retry failed requests?", "expected_sources": ["api-rate-limits.md"]}
+{"question": "Are webhook deliveries retried?", "expected_sources": ["api-rate-limits.md"]}
+{"question": "How are card refunds paid back to the customer?", "expected_sources": ["refunds.md"]}
