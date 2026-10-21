@@ -1,14 +1,28 @@
 # docsage
 
-![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-pgvector-4169E1?logo=postgresql&logoColor=white) ![RAG](https://img.shields.io/badge/RAG-cited_answers-FF6F00) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 Ask questions about your own text and markdown documents and get answers that cite their sources.
 
-docsage is a small, readable retrieval-augmented generation (RAG) service built on FastAPI. It ingests documents, splits them into overlapping chunks, embeds them, stores the vectors in PostgreSQL with pgvector, retrieves with top-k plus MMR re-ranking, and answers through any OpenAI-compatible model, with an offline extractive fallback. A retrieval evaluation harness runs in CI and fails the build if retrieval quality drops.
+docsage is a small retrieval-augmented generation (RAG) service built on FastAPI. It ingests documents, splits them into overlapping chunks, embeds them, stores the vectors in PostgreSQL with pgvector, retrieves with top-k plus MMR re-ranking, and answers through any OpenAI-compatible model, with an offline extractive fallback. A retrieval evaluation harness runs in CI and fails the build if retrieval quality drops.
+
+## Screenshots
+
+The sample corpus from `evals/corpus` is uploaded, then a question is answered from the retrieved chunk with a citation. This is the offline setup (hashing embedder, extractive answers) on pgvector via docker compose.
+
+![Ingest documents and ask a cited question](docs/screenshots/ingest-and-ask.png)
+
+The retrieval evaluation that CI runs after the tests.
+
+![Retrieval evaluation output](docs/screenshots/retrieval-eval.png)
+
+The endpoints in the interactive API docs at `/docs`.
+
+![Swagger UI](docs/screenshots/api-docs.png)
 
 ## Why
 
-Most RAG examples are either a notebook or a framework with ten layers of abstraction. docsage sits in between: every stage is a short module behind a small `Protocol`, so you can read the whole pipeline in an afternoon, swap any backend, and test it without a network connection or an API key.
+Most RAG examples are either a notebook or a framework with many layers of abstraction. docsage sits in between: every stage is a short module behind a small `Protocol`, so you can read the whole pipeline in an afternoon, swap any backend, and test it without a network connection or an API key.
 
 ## Architecture
 
